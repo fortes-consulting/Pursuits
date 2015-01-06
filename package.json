@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/joezdeng/pursuits/issues"
   },
-  "homepage": "https://github.com/joezdeng/pursuits"
+  "homepage": "https://github.com/joezdeng/pursuits",
+  "devDependencies": {
+    "grunt": "^0.4.5"
+  }
 }

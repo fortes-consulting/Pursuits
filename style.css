@@ -13,7 +13,7 @@ html, body {
 body {
 	font-size:10px;
 	font-family:Calibri, sans-serif;
-	color:#fff;
+	color:#333333;
 	/*background-color:#e04006;*/
 }
 
@@ -24,17 +24,15 @@ body {
 
 a {
 	text-decoration:none;
-	color:#fff;
 	cursor:pointer;
 }
 
 nav a:link, nav a:visited {
 	text-decoration:none;
-	color:#fff;
 }
 
 nav a:hover, nav a:active {
-	color:#00cbff;
+	color:#f63;
 }
 
 .uppercase {
@@ -42,17 +40,30 @@ nav a:hover, nav a:active {
 }
 
 #main-header {
-	background-color:#ff3300;
+	background-color:#fff;
 	width:100%;
+	color:#333333;
+	box-shadow:0px 8px 6px -6px #ababab;
+	/*-moz-box-shadow:0px 8px 6px -6px #ababab;
+	-webkit-box-shadow:3px 3px 3px 0 #ccc;*/
 }
 
 #main-header > * {
 	display:inline-block;
 }
 
+#pursuits-logo {
+	background-color:#f63;
+	width:40px;
+	height:40px;
+	vertical-align: text-bottom;
+	margin-left:5em;
+	border:none;
+}
+
 h1 {
 	font-size:3em;
-	margin:0.5em 1.5em;
+	margin:0.5em 0.1em;
 }
 
 #main-header li {
@@ -90,9 +101,8 @@ h3 {
 }
 
 #sub-header{
-	color:#333333;
 	font-size:1.5em;
-	border-bottom:1px #c3c3c3 solid;
+	background-color:#f5f5f5;
 }
 
 #sub-header > * {
@@ -107,7 +117,7 @@ h3 {
 }
 
 .button:hover, .button:active {
-	background-color:#00cbff;
+	background-color:#f63;
 	cursor:pointer;
 }
 
@@ -125,9 +135,9 @@ h3 {
 }
 
 .drop-menu select {
-	background-color:#c3c3c3;
+	background-color:#fff;
 	list-style-type:none;
-	color:;
+	color:#333333;
 }
 
 #suggested-button {
@@ -135,12 +145,14 @@ h3 {
 	position:absolute;
 	top:4.499em;
 	right:5em;
-	background-color:#c3c3c3;
+	background-color:#fff;
 	padding:0.5em 1em;
 	border-bottom-right-radius:5px;
-	border-bottom-left-radius:5px;
-	z-index:1;
-	color:#333333;
+	border-bottom-left-radius:5px;	
+	box-shadow:3px 3px 3px 1px #ababab;
+}
+
+.suggested-toggle {
 	cursor:pointer;
 }
 
@@ -149,8 +161,8 @@ h3 {
 }
 
 .fly-menu {
-	z-index:2;
-	background-color:#c3c3c3;
+	z-index:1;
+	background-color:#fff;
 	font-size:1.5em;
 	position:absolute;
 	top:4.499em;
@@ -160,7 +172,7 @@ h3 {
 	height:-webkit-calc(100% - 4.499em); /* chrome, safari */
 	height:-moz-calc(100% - 4.499em); /* firefox */
 	width:auto;
-	color:#333333;
+	border-left:1px solid #ababab;
 }
 
 .fly-menu > p {
@@ -208,10 +220,11 @@ h3 {
 .category {
 	margin:1em;
 	width:auto;
+	min-width:30em;
 	height:calc(100% - 2em);
 	display:inline-block;
 	background-color:#c3c3c3;
-	color:#333333;
+	box-shadow:1px 2px 3px 1px #ababab;
 }
 
 .category:first-child {
@@ -227,10 +240,11 @@ h2 {
 .option-wrap {
 	overflow-y:auto;
 	height:calc(100% - 5.55em);
+	background-color:#f5f5f5;
 }
 
 .option {
-	width:20em;
+	width:15em;
 	background-color:#fff;
 	height:auto;
 	margin:0.5em 2em;
@@ -238,3 +252,73 @@ h2 {
 	position:relative;
 	font-size:1.5em;
 }
+
+.sug-post, .option {
+	box-shadow:1px 2px 3px 1px #ababab;
+	border:1px solid #c3c3c3;
+}
+
+.details-button {
+	position:absolute;
+	top:0.5em;
+	right:0.5em;
+	background-color:#f63;
+}
+
+.ng-invalid.ng-dirty {
+	/*border-color:red;*/
+}
+
+.ng-valid.ng-dirty {
+	/*border-color:green;*/
+}
+
+.overlay {
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	background-color:rgba(0,0,0,0.7);
+}
+
+.popup {
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:#fff;
+	padding:1.5em;
+}
+
+.popup input, .popup textarea, .popup select {
+	float:right;
+}
+
+#add-option-form {
+	width:30em;
+	height:auto;
+	margin-top:-50em;
+}
+
+.popup form {
+	font-size:1.5em;
+}
+
+.popup p {
+	margin-bottom:1em;
+}
+
+.popup textarea {
+	resize:none;
+}
+
+#add-option-form p:nth-child(4) {
+	margin-bottom:4em;
+}
+
+#add-cat-form {
+	width:30em;
+	height:auto;
+	margin-top:-45em;
+}
+
