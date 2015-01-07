@@ -1,5 +1,5 @@
-(function() {
-	var app = angular.module('prsts', []);
+(function($scope) {
+	var app = angular.module('prsts', ['angular-sortable-view']);
 
 	app.controller('CategoryController', function() {
 		this.cats = categories;
@@ -52,6 +52,18 @@
 			var maxScrollX = wrapWidth - windowWidth;
 			$('#category-wrap').scrollLeft(maxScrollX);
 
+		};
+	});
+
+	app.controller('TabController', function() {
+		this.tab = 1;
+
+		this.setTab = function(newValue) {
+			this.tab = newValue;
+		};
+
+		this.isSet = function(tabName) {
+			return this.tab === tabName;
 		};
 	});
 
@@ -348,3 +360,59 @@
 
 
 })();
+
+
+$(document).ready(function() {
+	//Suggested Sidebar toggle
+	$('#suggested-button, .fly-menu p').click(function() {
+		$('.fly-menu').toggleClass('hidden');
+
+	    });
+
+	$('header, main').click(function() {
+		$('.fly-menu').addClass('hidden');
+
+	});
+
+
+	//Add Option Menu toggle
+	$('#add-option').click(function() {
+		$('.overlay, #add-option-form').fadeIn(function() {
+			$(this).removeClass('hidden');
+		});
+
+	});
+
+	//Add Category Menu toggle
+	$('#add-cat').click(function() {
+		$('.overlay, #add-cat-form').fadeIn(function() {
+			$(this).removeClass('hidden');
+		});
+
+	});
+
+	//Overlay toggle
+	$('.overlay').click(function() {
+		$('.overlay, .popup').fadeOut(function() {
+			$(this).addClass('hidden');
+		});
+
+	});
+
+	$(document).keyup(function(e) {
+		if(e.keyCode == 27) {
+			$('.overlay, .popup').fadeOut(function() {
+				$(this).addClass('hidden');
+			});
+		}
+	});
+
+	//Details Menu toggle
+	$('.details-button').click(function() {
+		console.log ("true");
+		$('.overlay, #details-menu').fadeIn(function() {
+			$(this).removeClass('hidden');
+	});
+
+});
+});

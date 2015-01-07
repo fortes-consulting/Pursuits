@@ -11,7 +11,7 @@
 
 <body>
 	<div id="page-wrap">
-		<header id="main-header">
+		<header id="main-header" class="shadow">
 			<img id="pursuits-logo" src="" />
 			<h1 class="uppercase">Pursuits</h1>
 			
@@ -67,11 +67,11 @@
 
 		</header> <!-- end #subHeader -->
 		
-		<p id="suggested-button" class="uppercase suggested-toggle">Suggested Jobs</p>
+		<p id="suggested-button" class="uppercase suggested-toggle shadow">Suggested Jobs</p>
 		<aside class="fly-menu hidden">
 			<p class="uppercase suggested-toggle">Suggested Jobs</p>	
 			<section id="sug-jobs" ng-controller="SuggestedController as sugCtrl">
-				<article class="sug-post" ng-repeat="sugJob in sugCtrl.sugJobs">
+				<article class="sug-post shadow" ng-repeat="sugJob in sugCtrl.sugJobs">
 					<p class="co-info"><img class="co-logo" ng-src="{{sugJob.image}}" alt-text="Company Logo" height=35px width=35px />{{sugJob.coName}}<br />{{sugJob.coLocation}}</p>
 					<p class="job-title">{{sugJob.jobTitle}}</p>
 				</article>
@@ -85,24 +85,85 @@
 			</section>
 		</aside> <!-- end flyMenu -->
 		
-		<main id="category-wrap" ng-controller="CategoryController as catCtrl">
-			<section class="category" ng-repeat="category in catCtrl.cats">
+		<main id="category-wrap" ng-controller="CategoryController as catCtrl" sv-root >
+			<section class="category shadow" ng-repeat="category in catCtrl.cats">
 				<h2>{{category.name}}</h2>
-				<div class="option-wrap">
-					<article class="option" ng-repeat="option in category.options">
+				<div class="option-wrap" sv-part="category.options">
+					<article class="option shadow" ng-repeat="option in category.options" sv-element ng-mouseenter="hover = true" ng-mouseleave="hover = false">
 						<section class="co-info"><img class="co-logo" ng-src="{{option.image}}" alt-text="Company Logo" height=35px width=35px />{{option.coName}}<br />{{option.coLocation}}</section>
 						<section class="job-title">{{option.jobTitle}}</section>
 						<section class="notes">{{option.notes}}</section>
-						<img class="details-button " src="" alt-text="Details Button" height=20px width=20px />
-					</article>
+						<img class="details-button hidden" src="" alt-text="Details Button" height=20px width=20px ng-class = "{hidden: !hover}" ng-click="details = true" />
+					</article> <!-- end .option -->
 				</div>
+			</section> <!-- end .category -->
+			
+			<section id="details-menu" class="popup shadow hidden" ng-controller="TabController as tabCtrl">
+				<h2>Job Title <!-- {{option.name}} --></h2>
+				<ul id="tabs">
+					<a href ng-click="tabCtrl.setTab(1)">
+						<li ng-class="{active: tabCtrl.isSet(1)}">Notes</li>
+					</a>
+					<a href ng-click="tabCtrl.setTab(2)">
+						<li ng-class="{active: tabCtrl.isSet(2)}">Contacts</li>
+					</a>
+					<a href ng-click="tabCtrl.setTab(3)">
+						<li ng-class="{active: tabCtrl.isSet(3)}">Tasks</li>
+					</a>
+					<a href ng-click="tabCtrl.setTab(4)">
+						<li ng-class="{active: tabCtrl.isSet(4)}">Expenses</li>
+					</a>
+					<a href ng-click="tabCtrl.setTab(5)">
+						<li ng-class="{active: tabCtrl.isSet(5)}">Files</li>
+					</a>
+				</ul>
+
+				<section ng-show="tabCtrl.isSet(1)">
+					<form>
+						<p>{option.notes}</p>
+						<p>
+		      				<label for="job-notes">
+		        			<textarea name="job-notes" rows="8" cols="22"></textarea>
+		        			</label>
+		        		</p>
+
+		       			<p>
+		   					<input type="submit" value="Save" />
+		   					<br />
+		       			</p>
+					</form>
+				</section>
+				<section ng-show="tabCtrl.isSet(2)">
+					<form>
+						<p>{option.contact.name}</p>
+						<p>
+		      				<label for="job-notes">
+		        			<textarea name="job-notes" rows="8" cols="22"></textarea>
+		        			</label>
+		        		</p>
+
+		       			<p>
+		   					<input type="submit" value="Save" />
+		   					<br />
+		       			</p>
+					</form>
+				</section>
+				<section ng-show="tabCtrl.isSet(3)">
+					<article>3</article>
+				</section>
+				<section ng-show="tabCtrl.isSet(4)">
+					<article>4</article>
+				</section>
+				<section ng-show="tabCtrl.isSet(5)">
+					<article>5</article>
+				</section>
 			</section>
 		</main> <!-- end #categoryWrap -->
 	</div> <!-- end #pageWrap -->
 
 	<div class="overlay hidden"></div>
 	
-	<section id="add-option-form" class="popup hidden">
+	<section id="add-option-form" class="popup shadow hidden">
 		<h2>Add an Option</h2>
 		<form name="addOptionForm" ng-controller="AddOptionController as AOCtrl" ng-submit="addOptionForm.$valid && AOCtrl.addOption()" novalidate>
 			<!-- <p>
@@ -114,19 +175,19 @@
 			<p>
       			<label for="co-name">
         			<span>Company Name:* </span>
-        			<input ng-model="AOCtrl.option.coName" type="text" name="co-name" required />
+        			<input ng-model="AOCtrl.option.coName" type="text" name="co-name" />
         		</label>
         	</p>
         	<p>
       			<label for="co-location">
         			<span>Company Location:* </span>
-        			<input ng-model="AOCtrl.option.coLocation" type="text" name="co-location" required />
+        			<input ng-model="AOCtrl.option.coLocation" type="text" name="co-location" />
         		</label>
         	</p>
         	<p>
       			<label for="job-title">
         			<span>Title: </span>
-        			<input ng-model="AOCtrl.option.jobTitle" type="text" name="job-title" />
+        			<input ng-model="AOCtrl.option.jobTitle" type="text" name="job-title" required />
         		</label>
         	</p>
         	<p>
@@ -154,7 +215,7 @@
 		</form>
 	</section> <!-- end #add-option-form -->
 	
-	<section id="add-cat-form" class="popup hidden">
+	<section id="add-cat-form" class="popup shadow hidden">
 		<h2>Add a Category</h2>
 		<form name="addCatForm" ng-controller="AddCatController as ACCtrl" ng-submit="addCatForm.$valid && ACCtrl.addCat()" novalidate>
 			<p>
@@ -171,9 +232,24 @@
 		</form>
 	</section>
 
+		<!--<form name="addCatForm" ng-controller="AddCatController as ACCtrl" ng-submit="addCatForm.$valid && ACCtrl.addCat()" novalidate>
+			<p>
+      			<label for="cat-name">
+        			<span>Category Name: </span>
+        			<input ng-model="ACCtrl.category.name" type="text" name="cat-name" required />
+        		</label>
+        	</p>
+        	
+        	<p>
+      			<input type="submit" value="Save" />
+      			<br />
+        	</p>
+		</form>-->
+
+
 	<script type="text/javascript" src="scripts/jquery-1.11.1.min.js"></script>
-	<script type="text/javascript" src="scripts/javascript.js"></script>
 	<script type="text/javascript" src="scripts/angular.min.js"></script>
+	<script type="text/javascript" src="scripts/angular-sortable-view.js"></script>
 	<script type="text/javascript" src="scripts/app.js"></script>
 </body>
 

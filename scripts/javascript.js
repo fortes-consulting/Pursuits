@@ -42,15 +42,10 @@ $(document).keyup(function(e) {
 	}
 });
 
-//Details Button toggle
+//Details Menu toggle
 $('.option img').click(function() {
-	console.log('clicked');
-	$('.details-button').toggleClass('hidden');
+	$('.overlay, #details-menu').fadeIn(function() {
+		$(this).removeClass('hidden');
+	});
 
-});
-
-$('.option').hover(function() {
-	$('.details-button').removeClass('hidden');
-}, function() {
-	$('.details-button').addClass('hidden');
 });
