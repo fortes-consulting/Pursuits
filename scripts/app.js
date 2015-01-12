@@ -1,6 +1,7 @@
 (function($scope) {
 	var app = angular.module('prsts', ['angular-sortable-view']);
 
+	//Pull data controllers
 	app.controller('CategoryController', function() {
 		this.cats = categories;
 	});
@@ -21,6 +22,35 @@
 		this.currentPursuits = pursuits;
 	});
 
+	app.controller('ContactsController', function() {
+		//Associate contacts
+		this.contacts = contacts;
+
+		//Push into contacts
+		this.contact = {};
+
+		this.addContact = function() {
+			contacts.push(this.contact);
+
+			this.contact = {};
+		};
+	});
+
+	app.controller('ExpensesController', function() {
+		//Associate expenses
+		this.expenses = expenses;
+
+		//Push into expenses
+		this.expense = {};
+
+		this.addExpense = function() {
+			expenses.push(this.expense);
+
+			this.expense = {};
+		};
+	});
+
+	//Push data controllers
 	app.controller('AddOptionController', function() {
 		this.option = {};
 
@@ -55,7 +85,8 @@
 		};
 	});
 
-	app.controller('TabController', function() {
+	app.controller('ViewController', function() {
+		//Details menu tabs
 		this.tab = 1;
 
 		this.setTab = function(newValue) {
@@ -65,6 +96,71 @@
 		this.isSet = function(tabName) {
 			return this.tab === tabName;
 		};
+
+		//Main views
+		this.view = 1;
+		
+		this.setView = function(newValue) {
+			this.view = newValue;
+		};
+
+		this.viewIsSet = function(viewName) {
+			return this.view === viewName;
+		};
+	});
+
+	app.controller('DetailsPlaceholderController', function() {
+		this.details = detailsPlaceholder;
+
+		//Add note
+		this.note = {};
+
+		this.addNote = function() {
+			this.details.notes.push(this.note);
+
+			this.note = {};
+		};
+
+		//Add optionContact
+		this.optionContact = {};
+
+		this.addOC = function() {
+			this.details.optionContacts.push(this.optionContact);
+			contacts.push(this.optionContact);
+
+			this.optionContact = {};
+		};
+
+		//Add task
+		this.task = {};
+
+		this.addTask = function() {
+			this.details.tasks.push(this.task);
+			schedule.push(this.task);
+
+			this.task = {};
+		};
+
+		//Add expense
+		this.expense = {};
+
+		this.addExpense = function() {
+			this.details.expenses.push(this.expense);
+			expenses.push(this.expense);
+
+			this.expense = {};
+		};
+
+		//Add file
+		this.file = {};
+
+		this.addFile = function() {
+			this.details.files.push(this.file);
+			files.push(this.file);
+
+			this.file = {};
+		};
+		
 	});
 
 
@@ -357,15 +453,78 @@
 		'Pro Bono Work'
 	];
 
+	var detailsPlaceholder = {
+		notes:[{content:'test note'},{content:'test note 2'}],
+		optionContacts:[{
+			name:'Contact Person',
+			email:'someemail@gmail.com',
+			company:'Some Company',
+			role:'Recruiter',
+			profile:'Likes cookies'
+		}],
+		tasks:[{
+			name:'Email recruiter',
+			date:1423490590,
+			info:'Send resume and cover letter'
+		}],
+		expenses:[{
+			name:'Cab ride',
+			date:1420898590,
+			amount:11.23
+		}],
+		files:[{
+			name:'Resume',
+			link:''
+		}],
+		tags:[{name:'agency'},{name:'The Loop'}]
+	};
 
+	var contacts = [{
+			name:'Contact Person A',
+			email:'someemail@gmail.com',
+			company:'Some Company',
+			role:'Recruiter',
+			profile:['Likes cookies']
+		},{
+			name:'Contact Person B',
+			email:'someemail@gmail.com',
+			company:'Some Company',
+			role:'Recruiter',
+			profile:['Likes cooks']
+		},{
+			name:'Contact Person C',
+			email:'someemail@gmail.com',
+			company:'Some Company',
+			role:'Recruiter',
+			profile:['Likes cooking']
+	}];
+
+	var schedule = [
+	];
+
+	var expenses = [{
+			name:'Cab ride',
+			date:1420898590,
+			amount:11.23
+		},{
+			name:'Cab ride',
+			date:1420898590,
+			amount:11.23
+	}];
+
+	var files = [
+	];
+
+	var tags = [
+	];
 
 })();
 
 
 $(document).ready(function() {
 	//Suggested Sidebar toggle
-	$('#suggested-button, .fly-menu p').click(function() {
-		$('.fly-menu').toggleClass('hidden');
+	$('#suggested-button, .fly-menu p:first-child').click(function() {
+		$('.fly-menu, #suggested-button').toggleClass('hidden');
 
 	    });
 
