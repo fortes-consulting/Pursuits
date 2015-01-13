@@ -36,7 +36,7 @@
 			</nav>
 				
 			<form id="search-box" action="">
-				<input type="text" name="search" placeholder="Search" value="" />
+				<input type="text" name="search" placeholder="Search not yet functional" value="" />
 				<input type="image" name"search-button" value="" src="images/search-button.png" alt="Search Button" height=20px width="auto" />
 			</form>
 
@@ -97,7 +97,7 @@
 			<p class="uppercase">Suggested Articles</p>
 			<section id="sug-articles" ng-controller="ArticleController as artCtrl">
 				<article class="sug-post" ng-repeat="article in artCtrl.arts">
-					<p class="article-title">{{article.title}}</p>
+					<a href="{{article.href}}"><p class="article-title">{{article.title}}</p></a>
 				</article>
 			</section>
 		</aside> <!-- end flyMenu -->
@@ -107,9 +107,11 @@
 				<h2>{{category.name}}</h2>
 				<div class="option-wrap" sv-part="category.options">
 					<article class="option shadow" ng-repeat="option in category.options" sv-element ng-mouseenter="hover = true" ng-mouseleave="hover = false">
-						<section class="co-info"><img class="co-logo" ng-src="{{option.image}}" alt-text="Company Logo" height=35px width=35px sv-handle />{{option.coName}}<br />{{option.coLocation}}</section>
+						<section class="co-info">
+							<img class="co-logo" ng-src="{{option.image}}" alt-text="Company Logo" height=35px width=35px />{{option.coName}}<br />{{option.coLocation}}
+						</section>
 						<section class="job-title">{{option.jobTitle}}</section>
-						<section class="notes">{{option.notes}}</section>
+						<section class="notes"><p ng-repeat="note in option.notes">{{note}};<br /></p></section>
 						<img class="details-button hidden" src="" alt-text="Details Button" height=20px width=20px ng-class ="{hidden: !hover}" ng-click="details = true" />
 					</article> <!-- end .option -->
 				</div>
@@ -418,7 +420,7 @@
 						</thead>
 						<tbody>
 							<tr ng-repeat="expense in expensesCtrl.expenses">
-								<td>{{expense.date | date:"medium"}}</td>
+								<td>{{expense.date | date:"MMM d, y"}}</td>
 								<td>{{expense.name}}</td>
 								<td>{{expense.amount | currency}}</td>
 							</tr>

@@ -247,6 +247,7 @@ h3 {
 	float:left;
 	display:inline-block;
 	margin-right:0.25em;
+
 }
 
 .job-title, .article-title {
@@ -322,6 +323,11 @@ h2 {
 	background-color:#f63;
 	cursor:pointer;
 }
+
+.notes p {
+	white-space:normal;
+	font-size:0.8em;
+}	
 
 .ng-invalid.ng-dirty {
 	/*border-color:red;*/
