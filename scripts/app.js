@@ -92,6 +92,10 @@
 			}
 
 			this.option = {};
+
+			$('.overlay, .popup').fadeOut(function() {
+				$(this).addClass('hidden');
+			});
 		};
 	});
 
@@ -103,12 +107,16 @@
 
 			this.category = {};
 
-			var wrapWidth = document.getElementById('category-wrap').scrollWidth;
-			var windowWidth = $(window).width()
-			var maxScrollX = wrapWidth - windowWidth;
-			$('#category-wrap').scrollLeft(maxScrollX);
+			$('.overlay, .popup').fadeOut(function() {
+				$(this).addClass('hidden');
 
+				var wrapWidth = document.getElementById('category-wrap').scrollWidth;
+				var windowWidth = $(window).width()
+				var maxScrollX = wrapWidth - windowWidth;
+				$('#category-wrap').scrollLeft(maxScrollX);
+			});
 		};
+
 	});
 
 	app.controller('ViewController', function() {
@@ -237,20 +245,6 @@
 					notes:['Primarily noSQL-based'],
 					image:'https://spothero.com/static/main_legacy/img/spothero-logo-shared.1de1755e115f.png',
 					idNumber:5681
-				}, {
-					coName:'SpotHero',
-					coLocation:'Chicago, IL',
-					jobTitle:'Senior Developer - Frontend',
-					notes:['Would want to see portfolio'],
-					image:'https://spothero.com/static/main_legacy/img/spothero-logo-shared.1de1755e115f.png',
-					idNumber:2615
-				}, {
-					coName:'KnowledgeHound',
-					coLocation:'Chicago, IL',
-					jobTitle:'Senior Developer',
-					notes:['Required 4+ yrs experience'],
-					image:'https://yt3.ggpht.com/-uWnkVemRPgQ/AAAAAAAAAAI/AAAAAAAAAAA/-UhXHrJ1exU/s100-c-k-no/photo.jpg',
-					idNumber:5211
 			}]
 		}, {
 			name:'Exploring',
